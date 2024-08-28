@@ -15,7 +15,7 @@
     "ColumnProperties": [
       {
         "ColumnName": "Tumor Type",
-        "ColumnPurpose": "Label",
+        "ColumnPurpose": "Feature",
         "ColumnDataFormat": "String",
         "IsCategorical": true,
         "Type": "Column",
@@ -39,7 +39,7 @@
       },
       {
         "ColumnName": "Grade",
-        "ColumnPurpose": "Feature",
+        "ColumnPurpose": "Label",
         "ColumnDataFormat": "String",
         "IsCategorical": true,
         "Type": "Column",
@@ -74,18 +74,18 @@
       {
         "Version": 1,
         "Type": "Trial",
-        "TrainerName": "FastTreeOva",
-        "Score": -0.0082031674867635556,
-        "RuntimeInSeconds": 1.674,
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.24563344857462505,
+        "RuntimeInSeconds": 0.359,
         "Parameter": {
-          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e5 * e12",
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e9 * e13",
           "e0": {
             "OutputColumnNames": [
-              "Grade",
+              "Tumor Type",
               "Gender"
             ],
             "InputColumnNames": [
-              "Grade",
+              "Tumor Type",
               "Gender"
             ]
           },
@@ -99,77 +99,30 @@
               "Patient Age"
             ]
           },
-          "e12": {
-            "OutputColumnName": "PredictedLabel",
-            "InputColumnName": "PredictedLabel"
-          },
-          "e2": {
-            "InputColumnName": "Location",
-            "OutputColumnName": "Location"
-          },
-          "e3": {
-            "InputColumnNames": [
-              "Grade",
-              "Gender",
-              "Size (cm)",
-              "Patient Age",
-              "Location"
-            ],
-            "OutputColumnName": "Features"
-          },
-          "e4": {
-            "OutputColumnName": "Tumor Type",
-            "InputColumnName": "Tumor Type",
-            "AddKeyValueAnnotationsAsText": false
-          },
-          "e5": {
-            "NumberOfLeaves": 4,
-            "MinimumExampleCountPerLeaf": 20,
-            "NumberOfTrees": 4,
-            "MaximumBinCountPerFeature": 254,
-            "FeatureFraction": 1.0,
-            "LearningRate": 0.099999999999999978,
-            "LabelColumnName": "Tumor Type",
-            "FeatureColumnName": "Features",
-            "DiskTranspose": false
-          }
-        }
-      },
-      {
-        "Version": 1,
-        "Type": "Trial",
-        "TrainerName": "SdcaLogisticRegressionOva",
-        "Score": -0.016217134254434721,
-        "RuntimeInSeconds": 5.528,
-        "Parameter": {
-          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e11 * e12",
-          "e0": {
-            "OutputColumnNames": [
-              "Grade",
-              "Gender"
-            ],
-            "InputColumnNames": [
-              "Grade",
-              "Gender"
-            ]
-          },
-          "e1": {
-            "OutputColumnNames": [
-              "Size (cm)",
-              "Patient Age"
-            ],
-            "InputColumnNames": [
-              "Size (cm)",
-              "Patient Age"
-            ]
+          "e10": {
+            "L1Regularization": 1567.6542,
+            "L2Regularization": 12.929456,
+            "LabelColumnName": "Grade",
+            "FeatureColumnName": "Features"
           },
           "e11": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 0.1,
-            "LabelColumnName": "Tumor Type",
+            "L1Regularization": 13817.727,
+            "L2Regularization": 2562.4705,
+            "LabelColumnName": "Grade",
             "FeatureColumnName": "Features"
           },
           "e12": {
+            "NumberOfLeaves": 8135,
+            "MinimumExampleCountPerLeaf": 60,
+            "NumberOfTrees": 979,
+            "MaximumBinCountPerFeature": 10,
+            "FeatureFraction": 0.1853496285776795,
+            "LearningRate": 7.783357250452655E-10,
+            "LabelColumnName": "Grade",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": true
+          },
+          "e13": {
             "OutputColumnName": "PredictedLabel",
             "InputColumnName": "PredictedLabel"
           },
@@ -179,7 +132,7 @@
           },
           "e3": {
             "InputColumnNames": [
-              "Grade",
+              "Tumor Type",
               "Gender",
               "Size (cm)",
               "Patient Age",
@@ -188,9 +141,52 @@
             "OutputColumnName": "Features"
           },
           "e4": {
-            "OutputColumnName": "Tumor Type",
-            "InputColumnName": "Tumor Type",
+            "OutputColumnName": "Grade",
+            "InputColumnName": "Grade",
             "AddKeyValueAnnotationsAsText": false
+          },
+          "e5": {
+            "NumberOfLeaves": 63,
+            "MinimumExampleCountPerLeaf": 73,
+            "NumberOfTrees": 652,
+            "MaximumBinCountPerFeature": 214,
+            "FeatureFraction": 0.42275267529571131,
+            "LearningRate": 0.0023933161386109534,
+            "LabelColumnName": "Grade",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          },
+          "e6": {
+            "NumberOfTrees": 47,
+            "NumberOfLeaves": 9,
+            "FeatureFraction": 0.6023959,
+            "LabelColumnName": "Grade",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "NumberOfLeaves": 29988,
+            "MinimumExampleCountPerLeaf": 25,
+            "LearningRate": 1.4526393873372707E-09,
+            "NumberOfTrees": 24544,
+            "SubsampleFraction": 0.014439381697305957,
+            "MaximumBinCountPerFeature": 78,
+            "FeatureFraction": 0.79422545368941755,
+            "L1Regularization": 3.0594025008470547E-07,
+            "L2Regularization": 0.019062252511696746,
+            "LabelColumnName": "Grade",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "L1Regularization": 214.4095,
+            "L2Regularization": 421.61484,
+            "LabelColumnName": "Grade",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "L1Regularization": 2.75012,
+            "L2Regularization": 998.6348,
+            "LabelColumnName": "Grade",
+            "FeatureColumnName": "Features"
           }
         }
       }
@@ -208,28 +204,30 @@
       "e9": "LbfgsMaximumEntropyMulti",
       "e10": "SdcaMaximumEntropyMulti",
       "e11": "SdcaLogisticRegressionOva",
-      "e12": "MapKeyToValue"
+      "e12": "FastTreeOva",
+      "e13": "MapKeyToValue"
     },
-    "Schema": "e0 * e1 * e2 * e3 * e4 * (e5 + e6 + e7 + e8 + e9 + e10 + e11) * e12",
-    "MetricName": "LogLoss-Reduction",
+    "Schema": "e0 * e1 * e2 * e3 * e4 * (e5 + e6 + e7 + e8 + e9 + e10 + e11 + e12) * e13",
+    "MetricName": "MicroAccuracy",
     "ModelFilePath": "C:\\Users\\Joelm_ho\\source\\repos\\AuthApp\\AuthApp\\braintumore.mlnet"
   },
   "Type": "TrainingConfig",
   "Version": 5,
   "TrainingOption": {
     "Version": 2,
-    "MaxModelToExplore": 2,
+    "MaximumMemoryToUseInMB": 500,
     "Subsampling": true,
-    "Tuner": "eci-cfo",
+    "Tuner": "smac",
     "Type": "ClassificationTrainingOption",
-    "TrainingTime": 20,
-    "OptimizeMetric": "LogLoss-Reduction",
-    "LabelColumn": "Tumor Type",
+    "TrainingTime": 60,
+    "OptimizeMetric": "MicroAccuracy",
+    "LabelColumn": "Grade",
     "AvailableTrainers": [
       "SDCA",
       "LBFGS",
       "LGBM",
       "FASTTREE",
+      "FASTTREE-DISKTRANSPOSE",
       "FASTFOREST"
     ],
     "ValidationOption": {

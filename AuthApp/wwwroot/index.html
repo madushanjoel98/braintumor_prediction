@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <script src="jquery/jquery.min.js"></script>
     <script src="/js/client.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+
 </head>
 
 <body id="body">
@@ -20,7 +23,7 @@
        
         <div class="card bg-dark text-light" id="resultcard">
             <div class="card-body">
-               <div class="card-head">Results: <b>Type of Tumor</b></div>
+               <div class="card-head">Results: <b>Tumor grade</b></div>
                <div class="card-body">
                    <img src="https://www.svgrepo.com/show/395921/brain.svg" width="50" />
                    <h3 class="text-capitalize" id="res">A</h3>
@@ -34,27 +37,29 @@
 
                 <div class="form-group">
                     <label class="form-label">Gender</label>
-                    <select id="pgen" class="form-select"></select>
+                    <select required id="pgen" class="form-select">
+                        <option selected disabled>--Select Gender--</option>
+                    </select>
 
                 </div>
                 <div class="form-group">
                     <label class="form-label">Age</label>
-                    <input class="form-control" id="age" type="number" placeholder="Age" />
+                    <input required class="form-control" id="age" type="number" placeholder="Age" />
 
                 </div>
                 <div class="form-group">
                     <label class="form-label">Tumor Location</label>
-                    <select class="form-select" id="tloc"></select>
+                    <select required class="form-select" id="tloc"></select>
 
                 </div>
                 <div class="form-group">
                     <label class="form-label">Tumor Grade</label>
-                    <select class="form-select" id="tugrade"></select>
+                    <select required class="form-select" id="tugrade"></select>
 
                 </div>
                 <div class="form-group">
                     <label class="form-label">Tumor Size</label>
-                    <input  step="any" class="form-control" id="tsize" type="number" placeholder="Size(cm)" />
+                    <input required step="any" class="form-control" id="tsize" type="number" placeholder="Size(cm)" />
 
                 </div>
                 <div class="col-form-label">

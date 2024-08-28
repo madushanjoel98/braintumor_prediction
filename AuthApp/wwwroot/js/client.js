@@ -1,7 +1,9 @@
 const baseUrl = 'http://localhost:5140/';
+
 $(document).ready(function () {
     $("#resultcard").hide();
     loadData();
+
  $("#tpr").submit(function (e) { 
     e.preventDefault();
     predictData();
@@ -54,7 +56,7 @@ function loadData() {
         success: function (response) {
             console.log(response);
             var loca = response.data.tumorLocations;
-            var grade = response.data.grade;
+            var grade = response.data.tumorstype;
             var genders = response.data.genders;
             console.log(loca);
 
@@ -94,7 +96,7 @@ function predictData() {
     var data = {
         "location": locationselector,
         "size__cm_": tsize,
-        "grade": tugrade,
+        "type": tugrade,
         "gender": pgen,
         "patient_Age": age
     };
@@ -118,7 +120,7 @@ function predictData() {
             console.error("Error:", error);
             console.error("Status:", status);
             console.error("Response:", xhr.responseText);
-            
+            message("Fail",xhr.responseText,"error");
             // Display user-friendly error message
             $("#resultcard").hide();
             $("#res").html("An error occurred while processing your request. Please try again.");
@@ -129,3 +131,19 @@ function  loadpage(page) {
     $("#body").load(page);
     
   }
+
+  function message(title,message,type) {
+    Swal.fire({
+        title: title,
+        text: message,
+        icon: type,
+        customClass: {
+            container: 'swal-light-container',
+            popup: 'bg-light',
+            title: 'swal-light-title',
+            content: 'swal-light-content'
+        }
+      });
+
+
+    }

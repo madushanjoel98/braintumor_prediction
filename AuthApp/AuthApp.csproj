@@ -14,6 +14,7 @@
     <PackageReference Include="Microsoft.ML.LightGbm" Version="3.0.1" />
     <PackageReference Include="Pandas.NET" Version="0.6.0" />
     <PackageReference Include="Plotly.NET" Version="3.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
   <ItemGroup Label="braintumore">
     <None Include="braintumore.mlnet">

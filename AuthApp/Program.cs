@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-
+builder.Services.AddSwaggerGen();
 // Add CORS policy
 builder.Services.AddCors(options =>
 {
@@ -26,7 +26,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+
+// Enable middleware to serve Swagger UI, specifying the Swagger JSON endpoint.
 
 app.UseRouting();
 app.UseStaticFiles();

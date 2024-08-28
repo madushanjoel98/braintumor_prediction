@@ -50,7 +50,7 @@ namespace AuthApp
         public class ModelOutput
         {
             [ColumnName(@"Tumor Type")]
-            public uint Tumor_Type { get; set; }
+            public float[] Tumor_Type { get; set; }
 
             [ColumnName(@"Location")]
             public float[] Location { get; set; }
@@ -59,7 +59,7 @@ namespace AuthApp
             public float Size__cm_ { get; set; }
 
             [ColumnName(@"Grade")]
-            public float[] Grade { get; set; }
+            public uint Grade { get; set; }
 
             [ColumnName(@"Patient Age")]
             public float Patient_Age { get; set; }
@@ -136,10 +136,10 @@ namespace AuthApp
         {
             var schema = PredictEngine.Value.OutputSchema;
 
-            var labelColumn = schema.GetColumnOrNull("Tumor Type");
+            var labelColumn = schema.GetColumnOrNull("Grade");
             if (labelColumn == null)
             {
-                throw new Exception("Tumor Type column not found. Make sure the name searched for matches the name in the schema.");
+                throw new Exception("Grade column not found. Make sure the name searched for matches the name in the schema.");
             }
 
             // Key values contains an ordered array of the possible labels. This allows us to map the results to the correct label value.

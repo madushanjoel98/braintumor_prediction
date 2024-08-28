@@ -41,13 +41,13 @@ namespace AuthApp
 
             var featureImportanceMetrics =
                  permutationFeatureImportance
-                 .Select((kvp) => new { kvp.Key, kvp.Value.LogLossReduction })
-                 .OrderByDescending(myFeatures => Math.Abs(myFeatures.LogLossReduction.Mean));
+                 .Select((kvp) => new { kvp.Key, kvp.Value.MicroAccuracy })
+                 .OrderByDescending(myFeatures => Math.Abs(myFeatures.MicroAccuracy.Mean));
 
             var featurePFI = new List<Tuple<string, double>>();
             foreach (var feature in featureImportanceMetrics)
             {
-                var pfiValue = Math.Abs(feature.LogLossReduction.Mean);
+                var pfiValue = Math.Abs(feature.MicroAccuracy.Mean);
                 featurePFI.Add(new Tuple<string, double>(feature.Key, pfiValue));
             }
 

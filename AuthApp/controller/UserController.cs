@@ -8,7 +8,7 @@ using PandasNet;
 using Microsoft.AspNetCore.Cors;
 namespace AuthApp.controller
 {
-  
+
     [Route("api")]
     [ApiController]
     public class UserController : ControllerBase
@@ -51,14 +51,18 @@ namespace AuthApp.controller
 
             try
             {
+                if (string.IsNullOrEmpty(model.Type))
+                {
+                   
+                }
                 //Load sample data
                 var sampleData = new Braintumore.ModelInput()
                 {
                     Location = @model.Location,
                     Size__cm_ = model.Size__cm_,
-                    Grade = model.Grade,
                     Patient_Age = model.Patient_Age,
                     Gender = model.Gender,
+                    Tumor_Type=model.Type
                 };
 
                 //Load model and predict output
@@ -89,8 +93,9 @@ namespace AuthApp.controller
             {
                 String[] d = {"Ependymoma","Meningioma","Glioblastoma","Astrocytoma","Oligodendroglioma"
                 };
+                string[] tutype = { "Ependymoma", "Meningioma", "Glioblastoma", "Astrocytoma", "Oligodendroglioma" };
                 string[] tumorLocations = new string[]
-{
+                {
     "Occipital Lobe",
     "Cerebellum",
     "Brainstem",
@@ -99,12 +104,14 @@ namespace AuthApp.controller
     "Parietal Lobe"
 };
 
-                String[] genders = {"Male","Female" };
-                var data = new {
+                String[] genders = { "Male", "Female" };
+                var data = new
+                {
                     genders = genders,
-                    alltypes=d,
-                    tumorLocations= tumorLocations,
-                    grade = new string[] { "I","II","III","IV" }
+                    alltypes = d,
+                    tumorLocations = tumorLocations,
+                    grade = new string[] { "I", "II", "III", "IV" },
+                    tumorstype=tutype
 
                 };
                 //Load sample data

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Trainers;
-using Microsoft.ML.Trainers.FastTree;
 using Microsoft.ML.Transforms;
 
 namespace AuthApp
@@ -91,12 +90,12 @@ namespace AuthApp
         public static IEstimator<ITransformer> BuildPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations
-            var pipeline = mlContext.Transforms.Categorical.OneHotEncoding(new []{new InputOutputColumnPair(@"Grade", @"Grade"),new InputOutputColumnPair(@"Gender", @"Gender")}, outputKind: OneHotEncodingEstimator.OutputKind.Indicator)      
+            var pipeline = mlContext.Transforms.Categorical.OneHotEncoding(new []{new InputOutputColumnPair(@"Tumor Type", @"Tumor Type"),new InputOutputColumnPair(@"Gender", @"Gender")}, outputKind: OneHotEncodingEstimator.OutputKind.Indicator)      
                                     .Append(mlContext.Transforms.ReplaceMissingValues(new []{new InputOutputColumnPair(@"Size (cm)", @"Size (cm)"),new InputOutputColumnPair(@"Patient Age", @"Patient Age")}))      
                                     .Append(mlContext.Transforms.Text.FeaturizeText(inputColumnName:@"Location",outputColumnName:@"Location"))      
-                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"Grade",@"Gender",@"Size (cm)",@"Patient Age",@"Location"}))      
-                                    .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName:@"Tumor Type",inputColumnName:@"Tumor Type",addKeyValueAnnotationsAsText:false))      
-                                    .Append(mlContext.MulticlassClassification.Trainers.OneVersusAll(binaryEstimator:mlContext.BinaryClassification.Trainers.FastTree(new FastTreeBinaryTrainer.Options(){NumberOfLeaves=4,MinimumExampleCountPerLeaf=20,NumberOfTrees=4,MaximumBinCountPerFeature=254,FeatureFraction=1,LearningRate=0.09999999999999998,LabelColumnName=@"Tumor Type",FeatureColumnName=@"Features",DiskTranspose=false}),labelColumnName: @"Tumor Type"))      
+                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"Tumor Type",@"Gender",@"Size (cm)",@"Patient Age",@"Location"}))      
+                                    .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName:@"Grade",inputColumnName:@"Grade",addKeyValueAnnotationsAsText:false))      
+                                    .Append(mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(new LbfgsMaximumEntropyMulticlassTrainer.Options(){L1Regularization=2.75012F,L2Regularization=998.6348F,LabelColumnName=@"Grade",FeatureColumnName=@"Features"}))      
                                     .Append(mlContext.Transforms.Conversion.MapKeyToValue(outputColumnName:@"PredictedLabel",inputColumnName:@"PredictedLabel"));
 
             return pipeline;
