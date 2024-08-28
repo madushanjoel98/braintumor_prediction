@@ -104,7 +104,7 @@ namespace AuthApp.controller
                     genders = genders,
                     alltypes=d,
                     tumorLocations= tumorLocations,
-                    grade = new string[] { "I","II" }
+                    grade = new string[] { "I","II","III","IV" }
 
                 };
                 //Load sample data

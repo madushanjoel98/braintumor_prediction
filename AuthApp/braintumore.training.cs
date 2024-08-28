@@ -96,7 +96,7 @@ namespace AuthApp
                                     .Append(mlContext.Transforms.Text.FeaturizeText(inputColumnName:@"Location",outputColumnName:@"Location"))      
                                     .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"Grade",@"Gender",@"Size (cm)",@"Patient Age",@"Location"}))      
                                     .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName:@"Tumor Type",inputColumnName:@"Tumor Type",addKeyValueAnnotationsAsText:false))      
-                                    .Append(mlContext.MulticlassClassification.Trainers.OneVersusAll(binaryEstimator:mlContext.BinaryClassification.Trainers.FastTree(new FastTreeBinaryTrainer.Options(){NumberOfLeaves=4,MinimumExampleCountPerLeaf=20,NumberOfTrees=4,MaximumBinCountPerFeature=377,FeatureFraction=0.9525679482877618,LearningRate=0.07215872269332954,LabelColumnName=@"Tumor Type",FeatureColumnName=@"Features",DiskTranspose=false}),labelColumnName: @"Tumor Type"))      
+                                    .Append(mlContext.MulticlassClassification.Trainers.OneVersusAll(binaryEstimator:mlContext.BinaryClassification.Trainers.FastTree(new FastTreeBinaryTrainer.Options(){NumberOfLeaves=4,MinimumExampleCountPerLeaf=20,NumberOfTrees=4,MaximumBinCountPerFeature=254,FeatureFraction=1,LearningRate=0.09999999999999998,LabelColumnName=@"Tumor Type",FeatureColumnName=@"Features",DiskTranspose=false}),labelColumnName: @"Tumor Type"))      
                                     .Append(mlContext.Transforms.Conversion.MapKeyToValue(outputColumnName:@"PredictedLabel",inputColumnName:@"PredictedLabel"));
 
             return pipeline;

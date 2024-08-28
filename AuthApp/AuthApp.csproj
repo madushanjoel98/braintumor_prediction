@@ -19,6 +19,5 @@
     <None Include="braintumore.mlnet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="wwwroot\index.html" />
   </ItemGroup>
 </Project>

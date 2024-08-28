@@ -1,4 +1,3 @@
-const baseUrl = 'http://localhost:5140/';
 $(document).ready(function () {
     $("#resultcard").hide();
     loadData();
@@ -125,7 +124,3 @@ function predictData() {
         }
     });
 }
-function  loadpage(page) {
-    $("#body").load(page);
-    
-  }
